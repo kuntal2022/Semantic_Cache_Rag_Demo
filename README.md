@@ -17,6 +17,9 @@ flowchart TD
 1. **CacheCheck** embeds the question and looks for a similar past question in Redis (cosine distance below a threshold).
 2. **Hit**: the stored answer is returned and retrieval and the LLM are skipped.
 3. **Miss**: relevant chunks are retrieved from Chroma, the LLM answers from that context only, and the new question-answer pair is stored with a TTL.
+4. Tune the thresold to a point which give the best precision
+   <img width="627" height="501" alt="image" src="https://github.com/user-attachments/assets/329926fc-a81e-440b-aa65-ef203f075ab9" />
+
 
 Per-question counters (`stats:asked`, `stats:hits`) are kept in Redis sorted sets so you can see which questions are asked most and which are served from cache.
 
